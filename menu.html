@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Meniu Modern</title>
+  <link rel="stylesheet" href="menu.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="left">🇷🇴 România</div>
+  <div class="right">
+    <span id="oraSite">Site pornit la: --:--:--</span>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </div>
+</header>
+
+
+  <main>
+    <section class="card profile">
+      <h3>👤 Profil</h3>
+      <p><strong>Nume:</strong> Andrei Popescu</p>
+      <p><strong>Email:</strong> andrei@example.com</p>
+      <p><strong>Rol:</strong> Utilizator</p>
+    </section>
+
+    <section class="center">
+      <a href="index.html" class="btn">▶ Play</a>
+      <a href="setting.html" class="btn">⚙️ Setări</a>
+    </section>
+
+    <section class="card record">
+      <h3>🏆 Recorduri</h3>
+      <ul>
+        <li>Scor 1: 99999</li>
+        <li>Scor 2: 9999</li>
+        <li>Scor 3: 999</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Pagina Joc. Toate drepturile rezervate.
+  </footer>
+
+  <script>
+    const startTime = new Date();
+    const oraSite = document.getElementById('oraSite');
+    function formatTime(date) {
+      return date.toLocaleTimeString('ro-RO');
+    }
+    oraSite.textContent = 'Site pornit la: ' + formatTime(startTime);
+  </script>
+
+</body>
+</html>

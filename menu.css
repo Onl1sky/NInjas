@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #2c3e50;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 260px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.profile h3,
+.record h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #34495e;
+}
+
+.profile p,
+.record li {
+  background-color: #f6f8fa;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.record ul {
+  list-style: none;
+  padding: 0;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 15px 50px;
+  border-radius: 14px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #3498db, #6dd5fa);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #2980b9, #58c3ff);
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+header .right nav {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+header nav a {
+  margin-left: 20px;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: #2c3e50;
+}

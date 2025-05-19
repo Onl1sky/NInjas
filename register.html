@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="l.and.r.css">
+</head>
+<body>
+
+  <header>
+    <div>🇷🇴 România</div>
+    <div class="right">
+      <span id="oraSite">Site pornit la: --:--:--</span>
+      <nav>
+        <a href="menu.html">Acasă</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-container">
+    <h2>📝 Înregistrare</h2>
+    <form class="auth-form">
+      <input type="text" placeholder="Nume complet" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Parolă" required>
+      <button type="submit">Înregistrare</button>
+      <p>Ai deja cont? <a href="login.html">Autentifică-te</a></p>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Pagina Joc. Toate drepturile rezervate.
+  </footer>
+
+  <script>
+    const oraSite = document.getElementById('oraSite');
+    oraSite.textContent = 'Site pornit la: ' + new Date().toLocaleTimeString('ro-RO');
+  </script>
+
+</body>
+</html>

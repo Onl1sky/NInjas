@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Despre Creator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div>🇷🇴 România</div>
+    <div class="right">
+      <span id="oraSite">Site pornit la: --:--:--</span>
+      <nav>
+        <a href="menu.html">Acasă</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="creator.html">Creator</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-container">
+    <h2>👨‍💻 Despre Creator</h2>
+    <div style="text-align: center;">
+      <img src="https://via.placeholder.com/120" alt="Poza Creator" style="border-radius: 50%; margin-bottom: 20px;">
+    </div>
+    <p style="text-align: center; font-size: 16px; color: #2c3e50;">
+      Salut! Numele meu este <strong>Andrei Popescu</strong> și sunt creatorul acestui joc web.
+      Sunt pasionat de programare, design web și tot ce ține de tehnologie.
+    </p>
+    <br>
+    <p style="text-align: center; font-size: 16px; color: #2c3e50;">
+      Acest proiect a fost realizat ca parte dintr-un curs / temă pentru dezvoltare web. 
+      Scopul său este să ofere o experiență modernă și prietenoasă pentru utilizatori.
+    </p>
+    <br>
+    <p style="text-align: center; font-size: 16px; color: #2c3e50;">
+      📧 Contact: <a href="mailto:andrei@example.com">andrei@example.com</a><br>
+      💼 GitHub: <a href="https://github.com/andrei" target="_blank">github.com/andrei</a>
+    </p>
+  </div>
+
+  <footer>
+    &copy; 2025 Pagina Joc. Toate drepturile rezervate.
+  </footer>
+
+  <script>
+    const oraSite = document.getElementById('oraSite');
+    oraSite.textContent = 'Site pornit la: ' + new Date().toLocaleTimeString('ro-RO');
+  </script>
+
+</body>
+</html>

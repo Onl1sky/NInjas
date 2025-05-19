@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="index.css">
+<button id="fullscreenBtn" aria-label="Toggle Fullscreen"></button>
+<button id="menuBtn" aria-label="Back to Menu"></button>
+<div id="score">Scor: 0</div>
+<div id="gameTime">Timp: 00:00</div>
+<canvas></canvas>
+
+<script src="./js/utils.js"></script>
+<script src="./js/classes/CollisionBlock.js"></script>
+<script src="./js/classes/Sprite.js"></script>
+<script src="./js/classes/Player.js"></script>
+<script src="./js/classes/Coin.js"></script>
+<script src="./js/data/collisions.js"></script>
+<script src="index.js"></script>
+
+<script>
+  // Menu button functionality
+  document.getElementById('menuBtn').addEventListener('click', function() {
+    window.location.href = 'menu.html';
+  });
+
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  let isFullscreen = false;
+  
+  // Function to enter fullscreen
+  function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { // Firefox
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+      element.msRequestFullscreen();
+    }
+  }
+  
+  // Function to exit fullscreen
+  function exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+  }
+  
+  // Toggle fullscreen on button click
+  fullscreenBtn.addEventListener('click', function() {
+    if (!isFullscreen) {
+      enterFullscreen(document.documentElement); // Use document.documentElement for better compatibility
+      isFullscreen = true;
+    } else {
+      exitFullscreen();
+      isFullscreen = false;
+    }
+  });
+  
+  // Also allow ESC key to exit fullscreen
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isFullscreen) {
+      exitFullscreen();
+      isFullscreen = false;
+    }
+  });
+  
+  // Update button state when fullscreen changes
+  document.addEventListener('fullscreenchange', updateFullscreenState);
+  document.addEventListener('webkitfullscreenchange', updateFullscreenState);
+  document.addEventListener('mozfullscreenchange', updateFullscreenState);
+  document.addEventListener('MSFullscreenChange', updateFullscreenState);
+  
+  function updateFullscreenState() {
+    isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                     document.mozFullScreenElement || document.msFullscreenElement);
+    
+    if (isFullscreen) {
+      fullscreenBtn.classList.add('exit');
+    } else {
+      fullscreenBtn.classList.remove('exit');
+    }
+  }
+</script>
