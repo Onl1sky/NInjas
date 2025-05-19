@@ -115,3 +115,55 @@ header nav a {
 header nav a:hover {
   color: #2c3e50;
 }
+
+/* Tema Dark Mode */
+body.dark-mode {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #ecf0f1;
+}
+
+body.dark-mode header {
+  background-color: #1c2833;
+  color: #ecf0f1;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode footer {
+  background-color: #1c2833;
+  color: #ecf0f1;
+  box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode header nav a {
+  color: #7f8c8d;
+}
+
+body.dark-mode header nav a:hover {
+  color: #ecf0f1;
+}
+
+body.dark-mode .auth-container,
+body.dark-mode .profile-box,
+body.dark-mode .record-box {
+  background-color: #34495e;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  color: #ecf0f1;
+}
+
+body.dark-mode input {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border-color: #7f8c8d;
+}
+
+body.dark-mode input:focus {
+  border-color: #3498db;
+}
+
+body.dark-mode button {
+  background-color: #2980b9;
+}
+
+body.dark-mode button:hover {
+  background-color: #1c5980;
+}
