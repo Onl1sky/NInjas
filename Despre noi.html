@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Despre Noi</title>
+  <link rel="stylesheet" href="menu.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div>🇷🇴 România</div>
+  <div class="right">
+    <span id="oraSite">Site pornit la: --:--:--</span>
+    <nav>
+      <a href="menu.html">Acasă</a>
+      <a href="about.html">Despre noi</a>
+      <a href="register.html" id="registerLink">Register</a>
+      <a href="login.html" id="loginLink">Login</a>
+      <button id="logoutBtn" style="display:none; margin-left: 20px;">Logout</button>
+    </nav>
+    <button id="darkModeToggle">Dark Mode</button>
+  </div>
+</header>
+
+<main class="main-layout">
+  <section class="card">
+    <h3>👨‍💻 Cine suntem?</h3>
+    <p>Suntem o echipă pasionată de jocuri și tehnologie, cu scopul de a aduce distracție și interactivitate printr-o platformă modernă de gaming. Fiecare element din acest site este construit cu grijă pentru a oferi o experiență plăcută și intuitivă utilizatorilor.</p>
+  </section>
+
+  <section class="card">
+    <h3>🎯 Misiunea noastră</h3>
+    <p>Ne dorim să oferim un spațiu sigur și prietenos în care utilizatorii pot concura, se pot relaxa și se pot bucura de jocuri captivante care pun la încercare abilitățile și reflexele.</p>
+  </section>
+
+  <section class="card">
+    <h3>📞 Contact</h3>
+    <p><strong>Email:</strong> contact@pagina-joc.ro</p>
+    <p><strong>Telefon:</strong> +40 765 123 456</p>
+    <p><strong>Program:</strong> Luni - Vineri, 09:00 - 17:00</p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Pagina Joc. Toate drepturile rezervate.
+</footer>
+
+<script>
+  // Ora pornire site
+  const startTime = new Date();
+  document.getElementById('oraSite').textContent = 'Site pornit la: ' + startTime.toLocaleTimeString('ro-RO');
+
+  // Tema
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    darkModeToggle.textContent = 'Light Mode';
+  }
+
+  darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const tema = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', tema);
+    darkModeToggle.textContent = tema === 'dark' ? 'Light Mode' : 'Dark Mode';
+  });
+
+  // Login state
+  window.addEventListener('DOMContentLoaded', () => {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    const registerLink = document.getElementById('registerLink');
+    const loginLink = document.getElementById('loginLink');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (isLoggedIn) {
+      registerLink.style.display = 'none';
+      loginLink.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.setItem('loggedIn', 'false');
+      location.reload();
+    });
+  });
+</script>
+
+</body>
+</html>
