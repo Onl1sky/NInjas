@@ -7,15 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <header>
   <div>🇷🇴 România</div>
   <div class="right">
     <span id="oraSite">Site pornit la: --:--:--</span>
     <nav>
       <a href="menu.html">Acasă</a>
-      <a href="register.html">Register</a>
-      <a href="login.html">Login</a>
+      <a href="register.html" id="registerLink">Register</a>
+      <a href="login.html" id="loginLink">Login</a>
+      <button id="logoutBtn" style="display:none; margin-left: 20px; padding: 6px 12px; border:none; border-radius:8px; cursor:pointer; background:#e74c3c; color:#fff; font-weight:600; transition: background 0.3s ease;">
+        Logout
+      </button>
     </nav>
     <button id="darkModeToggle" style="margin-left: 20px; padding: 6px 12px; border:none; border-radius:8px; cursor:pointer; background:#3498db; color:#fff; font-weight:600; transition: background 0.3s ease;">
       Dark Mode
@@ -23,62 +25,136 @@
   </div>
 </header>
 
+<main class="main-layout">
+  <section class="card profile">
+    <h3>👤 Profil</h3>
+    <p><strong>Nume:</strong> Ginu Dragos</p>
+    <p><strong>Email:</strong> dragosginu299@example.com</p>
+    <p><strong>Rol:</strong> User</p>
+  </section>
 
+  <section class="center">
+    <a href="index.html" class="btn">▶ Play</a>
+    <a href="setting.html" class="btn">⚙️ Setări</a>
+  </section>
 
-  <main>
-    <section class="card profile">
-      <h3>👤 Profil</h3>
-      <p><strong>Nume:</strong> Andrei Popescu</p>
-      <p><strong>Email:</strong> andrei@example.com</p>
-      <p><strong>Rol:</strong> Utilizator</p>
-    </section>
+  <section class="card record">
+    <h3>🏆 Recorduri</h3>
+    <ul id="listaScoruri">
+      <li>Scor 1: 99999</li>
+      <li>Scor 2: 9999</li>
+      <li>Scor 3: 999</li>
+      <li id="scorGinu">Scorul tău: --</li>
+    </ul>
+  </section>
+</main>
 
-    <section class="center">
-      <a href="index.html" class="btn">▶ Play</a>
-      <a href="setting.html" class="btn">⚙️ Setări</a>
-    </section>
+<div class="game-slider">
+  <button class="slider-btn prev">&lt;</button>
+  <div class="slider-track">
+    <div class="card">
+      <img src="img/image.png" alt="Joaca - nivel 1">
+      <div class="card-info">
+        <h3> Nivel 1</h3>
+        <p>Explorează lumea magică și evită capcanele!</p>
+        <p><strong>Puncte:</strong> 100</p>
+        <button class="btn-play">Joacă acum ▶</button>
+      </div>
+    </div>
 
-    <section class="card record">
-      <h3>🏆 Recorduri</h3>
-      <ul>
-        <li>Scor 1: 99999</li>
-        <li>Scor 2: 9999</li>
-        <li>Scor 3: 999</li>
-      </ul>
-    </section>
-  </main>
+    <div class="card">
+      <img src="img/image copy.png" alt="Joaca - nivel 2">
+      <div class="card-info">
+        <h3> Nivel 2</h3>
+        <p>Mai greu, cu obstacole și inamici noi!</p>
+        <p><strong>Puncte:</strong> 200</p>
+        <button class="btn-play">Joacă acum ▶</button>
+      </div>
+    </div>
 
-  <footer>
-    &copy; 2025 Pagina Joc. Toate drepturile rezervate.
-  </footer>
+    <div class="card">
+      <img src="img/image copy 2.png" alt="Joaca - nivel 3">
+      <div class="card-info">
+        <h3> Nivel 3</h3>
+        <p>Provocarea finală, demonstrează-ți abilitatea!</p>
+        <p><strong>Puncte:</strong> 300</p>
+        <button class="btn-play">Joacă acum ▶</button>
+      </div>
+    </div>
+  </div>
+  <button class="slider-btn next">&gt;</button>
+</div>
 
-  <script>
-    const startTime = new Date();
-    const oraSite = document.getElementById('oraSite');
-    function formatTime(date) {
-      return date.toLocaleTimeString('ro-RO');
-    }
-    oraSite.textContent = 'Site pornit la: ' + formatTime(startTime);
-    const darkModeToggle = document.getElementById('darkModeToggle');
+<footer>
+  &copy; 2025 Pagina Joc. Toate drepturile rezervate.
+</footer>
 
-// Încarcă tema din localStorage (dacă există)
+<script>
+  // Ora de pornire
+  const startTime = new Date();
+  const oraSite = document.getElementById('oraSite');
+  oraSite.textContent = 'Site pornit la: ' + startTime.toLocaleTimeString('ro-RO');
+
+  // Tema întunecată
+  const darkModeToggle = document.getElementById('darkModeToggle');
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
     darkModeToggle.textContent = 'Light Mode';
   }
-
   darkModeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    if (document.body.classList.contains('dark-mode')) {
-      darkModeToggle.textContent = 'Light Mode';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      darkModeToggle.textContent = 'Dark Mode';
-      localStorage.setItem('theme', 'light');
-    }
+    const temaNoua = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', temaNoua);
+    darkModeToggle.textContent = temaNoua === 'dark' ? 'Light Mode' : 'Dark Mode';
   });
 
-  </script>
+  // Slider
+  const track = document.querySelector('.slider-track');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  let currentIndex = 0;
+  const totalCards = document.querySelectorAll('.slider-track .card').length;
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    updateSlider();
+  });
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateSlider();
+  });
+
+  // Scor salvat
+  window.addEventListener('DOMContentLoaded', () => {
+    const scorSalvat = localStorage.getItem('scorGinu');
+    const scorGinuElem = document.getElementById('scorGinu');
+    if (scorSalvat && scorGinuElem) {
+      scorGinuElem.textContent = `Scorul tău: ${scorSalvat}`;
+    }
+
+    // Login/Logout logic
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    const registerLink = document.getElementById('registerLink');
+    const loginLink = document.getElementById('loginLink');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (isLoggedIn) {
+      if (registerLink) registerLink.style.display = 'none';
+      if (loginLink) loginLink.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'inline-block';
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.setItem('loggedIn', 'false');
+        location.reload();
+      });
+    }
+  });
+</script>
 
 </body>
 </html>

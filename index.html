@@ -14,60 +14,54 @@
 <script src="index.js"></script>
 
 <script>
-  // Menu button functionality
   document.getElementById('menuBtn').addEventListener('click', function() {
     window.location.href = 'menu.html';
   });
 
   const fullscreenBtn = document.getElementById('fullscreenBtn');
   let isFullscreen = false;
-  
-  // Function to enter fullscreen
+
   function enterFullscreen(element) {
     if (element.requestFullscreen) {
       element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) { // Firefox
+    } else if (element.mozRequestFullScreen) { 
       element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
+    } else if (element.webkitRequestFullscreen) {
       element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { // IE/Edge
+    } else if (element.msRequestFullscreen) { 
       element.msRequestFullscreen();
     }
   }
-  
-  // Function to exit fullscreen
+
   function exitFullscreen() {
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { // Firefox
+    } else if (document.mozCancelFullScreen) { 
       document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+    } else if (document.webkitExitFullscreen) { 
       document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE/Edge
+    } else if (document.msExitFullscreen) { 
       document.msExitFullscreen();
     }
   }
-  
-  // Toggle fullscreen on button click
+
   fullscreenBtn.addEventListener('click', function() {
     if (!isFullscreen) {
-      enterFullscreen(document.documentElement); // Use document.documentElement for better compatibility
+      enterFullscreen(document.documentElement); 
       isFullscreen = true;
     } else {
       exitFullscreen();
       isFullscreen = false;
     }
   });
-  
-  // Also allow ESC key to exit fullscreen
+
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && isFullscreen) {
       exitFullscreen();
       isFullscreen = false;
     }
   });
-  
-  // Update button state when fullscreen changes
+
   document.addEventListener('fullscreenchange', updateFullscreenState);
   document.addEventListener('webkitfullscreenchange', updateFullscreenState);
   document.addEventListener('mozfullscreenchange', updateFullscreenState);
@@ -83,4 +77,48 @@
       fullscreenBtn.classList.remove('exit');
     }
   }
+
+let scorCurent = 0;
+
+function adaugaScor(puncte) {
+  scorCurent += puncte;
+  document.getElementById('score').textContent = `Scor: ${scorCurent}`;
+
+  // Salvează scorul
+  localStorage.setItem('scorGinu', scorCurent);
+
+  // Actualizează afișajul scorului salvat
+  const scorGinuElem = document.getElementById('scorGinu');
+  scorGinuElem.textContent = `Scorul tău: ${scorCurent}`;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const scorulMeu = localStorage.getItem('scorGinu');
+  const scorGinuElem = document.getElementById('scorGinu');
+
+  if (scorGinuElem) {
+    scorGinuElem.textContent = scorulMeu !== null
+      ? `Scorul tău: ${scorulMeu}`
+      : `Scorul tău: -`;
+  }
+});
+
+function addScoreToStorage(newScore) {
+  // ia lista curentă sau creează goală
+  let scores = JSON.parse(localStorage.getItem('leaderboard')) || []
+  
+  scores.push(newScore) // adaugă noul scor
+  scores.sort((a, b) => b - a) // sortare descrescătoare
+  if (scores.length > 10) scores = scores.slice(0, 10) // păstrează max 10 scoruri
+
+  localStorage.setItem('leaderboard', JSON.stringify(scores))
+}
+
+// când jucătorul „moare” sau iese:
+function gameOver() {
+  addScoreToStorage(score)
+  score = 0
+  // resetări joc...
+}
+
 </script>
